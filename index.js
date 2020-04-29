@@ -38,3 +38,104 @@ let onClose = function(){
 };
 process.on('SIGTERM', onClose);
 process.on('SIGINT', onClose);
+
+
+
+/*
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ * ======             CONFIGURATION          =========
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ * ===================================================
+ */
+
+
+
+const pg = require('pg');
+const url = require('url');
+
+var configs;
+
+if( process.env.DATABASE_URL ){
+
+  const params = url.parse(process.env.DATABASE_URL);
+  const auth = params.auth.split(':');
+
+  configs = {
+    user: auth[0],
+    password: auth[1],
+    host: params.hostname,
+    port: params.port,
+    database: params.pathname.split('/')[1],
+    ssl: true
+  };
+
+}else{
+  configs = {
+    user: 'apple',
+    host: '127.0.0.1',
+    database: 'mootrek',
+    port: 5432
+  };
+}
+
+
+const pool = new pg.Pool(configs);
+
+pool.on('error', function (err) {
+  console.log('idle client error', err.message, err.stack);
+});
+
+
+// ************************************************
+////DISPLAY OPENING PAGE///
+// ************************************************
+
+app.get('/', (request, response) => {
+   response.send('Hello world')
+  response.render('opening');
+});
+
+// ************************************************
+///REGISTER//////
+// ************************************************
+
+app.get('/register/', (request, response) => {
+  response.render('register');
+});
+
+
+
+app.post('/register', (request, response) => {
+  let insertQueryText = "INSERT INTO users (name, password) VALUES ($1, $2) RETURNING *";
+  let hashedPw = sha256( request.body.password + SALT );
+  const values = [ request.body.name, hashedPw ];
+  pool.query(insertQueryText, values, (err, result)=> {
+    if (err) {
+      console.log("Sorry, you have an error", err);
+      response.send("Sorry, you have an error")
+    } else {
+      let user_id = result.rows[0].id;
+      let hashedCookie = sha256(SALT+user_id);
+      response.cookie('name', request.body.name);
+      response.cookie('loggedIn', hashedCookie);
+      response.cookie('userId', user_id);
+      response.redirect('/books/new/');
+    }
+    });
+});
+
+
+// ************************************************
+//. LOGOUT
+// ************************************************
+app.get('/logout', (request, response) => {
+    response.clearCookie('name');
+    response.clearCookie('loggedIn');
+    response.clearCookie('userId');
+    response.redirect('/');
+});
