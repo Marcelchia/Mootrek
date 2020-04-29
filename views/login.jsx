@@ -1,7 +1,7 @@
 var React = require("react");
 
 
-class LogIn extends React.Component {
+class login extends React.Component {
   render() {
     return (<html>
         <head>
@@ -23,11 +23,11 @@ class LogIn extends React.Component {
                     <p className="card-text">
                                 <div >
                                         <form action="/login" method="POST">
-                                             <p style>
+                                             <p>
                                                     Name <input name="name" required/>
                                             </p>
 
-                                            <p style>
+                                            <p>
                                                 Password <input type="password" name="password"/>
                                             </p>
 
@@ -38,7 +38,7 @@ class LogIn extends React.Component {
                                 </div>
 
                             <div>
-                                    <p style={{width: "30%", textAlign: "center", margin: "50px auto 5px auto"}}>Not registered yet? Click<a href="/register"> here</a> to register.</p>
+                                    <p>Not registered yet? Click<a href="/register"> here</a> to register.</p>
                             </div>
                     </p>
                             <p className="card-text"></p>
@@ -54,4 +54,4 @@ class LogIn extends React.Component {
     };
 
 
-    module.exports = LogIn;
+    module.exports = login;

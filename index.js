@@ -53,42 +53,42 @@ process.on('SIGINT', onClose);
  * ===================================================
  */
 
+///////db.js///////
+
+//const pg = require('pg');
+const url = require('url');
+
+var configs;
+
+if( process.env.DATABASE_URL ){
+
+  const params = url.parse(process.env.DATABASE_URL);
+  const auth = params.auth.split(':');
+
+  configs = {
+    user: auth[0],
+    password: auth[1],
+    host: params.hostname,
+    port: params.port,
+    database: params.pathname.split('/')[1],
+    ssl: true
+  };
+
+}else{
+  configs = {
+    user: 'apple',
+    host: '127.0.0.1',
+    database: 'mootrek',
+    port: 5432
+  };
+}
 
 
-// const pg = require('pg');
-// const url = require('url');
+const pool = new pg.Pool(configs);
 
-// var configs;
-
-// if( process.env.DATABASE_URL ){
-
-//   const params = url.parse(process.env.DATABASE_URL);
-//   const auth = params.auth.split(':');
-
-//   configs = {
-//     user: auth[0],
-//     password: auth[1],
-//     host: params.hostname,
-//     port: params.port,
-//     database: params.pathname.split('/')[1],
-//     ssl: true
-//   };
-
-// }else{
-//   configs = {
-//     user: 'apple',
-//     host: '127.0.0.1',
-//     database: 'mootrek',
-//     port: 5432
-//   };
-// }
-
-
-// const pool = new pg.Pool(configs);
-
-// pool.on('error', function (err) {
-//   console.log('idle client error', err.message, err.stack);
-// });
+pool.on('error', function (err) {
+  console.log('idle client error', err.message, err.stack);
+});
 
 
 // ************************************************
@@ -96,7 +96,6 @@ process.on('SIGINT', onClose);
 // ************************************************
 
 app.get('/', (request, response) => {
-   response.send('Hello world')
   response.render('opening');
 });
 
@@ -124,9 +123,53 @@ app.post('/register', (request, response) => {
       response.cookie('name', request.body.name);
       response.cookie('loggedIn', hashedCookie);
       response.cookie('userId', user_id);
-      response.redirect('/books/new/');
+      response.redirect('/login');
     }
     });
+});
+
+
+// ************************************************
+//. LOGIN
+// ************************************************
+app.get('/login/', (request, response) => {
+  response.render('login');
+});
+
+
+
+
+app.post('/login',(request, response)=>{
+    console.log(request.body);
+  let query = "SELECT * FROM users WHERE name='"+request.body.name+"'";
+  console.log("MY QUERY: "+query)
+  pool.query(query, (err, result)=>{
+    if(error){
+      console.log("ERRRR", error);
+      response.status(500).send("error")
+    } else {
+      if ( result.rows.length === 0 ) {
+        response.send("Please sign up for an account before logging in");
+      } else {
+        // hash the request, if its the same as db
+        let hashedRequestPw = sha256( request.body.password + SALT);
+        // if the password in the db matches the one in the login form
+        if ( result.rows[0].password === hashedRequestPw ) {
+            console.log("result rows+++++", result.rows[0].id)
+          let user_id = result.rows[0].id;
+          let hashedCookie = sha256(SALT+user_id);
+          // response.cookie('loggedIn', true);
+          response.cookie('name', request.body.name)
+          response.cookie('loggedIn', hashedCookie);
+          response.cookie('userId', user_id);
+          // response.send( result.rows[0] );
+          response.redirect('/home');
+        }else{
+          response.send("Your password is wrong! Try again!")
+        }
+      }
+    }
+  });
 });
 
 

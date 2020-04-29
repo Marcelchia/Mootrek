@@ -7,7 +7,7 @@ class register extends React.Component {
     <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"/>
           <link rel="stylesheet" type="text/css" href="/style.css"/>
-          <title>My Library</title>
+          <title>MooTrek</title>
           <meta charSet="utf-8" />
       </head>
 
