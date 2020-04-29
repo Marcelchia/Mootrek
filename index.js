@@ -143,7 +143,7 @@ app.post('/login',(request, response)=>{
     console.log(request.body);
   let query = "SELECT * FROM users WHERE name='"+request.body.name+"'";
   console.log("MY QUERY: "+query)
-  pool.query(query, (err, result)=>{
+  pool.query(query, (error, result)=>{
     if(error){
       console.log("ERRRR", error);
       response.status(500).send("error")
@@ -181,4 +181,14 @@ app.get('/logout', (request, response) => {
     response.clearCookie('loggedIn');
     response.clearCookie('userId');
     response.redirect('/');
+});
+
+
+// ************************************************
+//. LOGIN HOMEPAGE
+// ************************************************
+
+
+app.get('/home', (request, response) => {
+  response.render('home');
 });
