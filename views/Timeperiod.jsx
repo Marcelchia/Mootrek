@@ -1,6 +1,6 @@
 var React = require("react");
 
-class AllIncomeStream extends React.Component {
+class Timeperiod extends React.Component {
   render() {
     return (<html>
         <head>
@@ -13,7 +13,9 @@ class AllIncomeStream extends React.Component {
 
 <body>
 
-<h1>Time Period</h1>
+<h1>State Time Period</h1>
+
+
 
 
 </body>
@@ -26,4 +28,4 @@ class AllIncomeStream extends React.Component {
 
 
 
-    module.exports = AllIncomeStream;
+    module.exports = Timeperiod;

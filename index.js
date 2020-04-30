@@ -96,7 +96,7 @@ pool.on('error', function (err) {
 // ************************************************
 
 app.get('/', (request, response) => {
-  response.render('opening');
+  response.render('home');
 });
 
 // ************************************************
@@ -163,7 +163,7 @@ app.post('/login',(request, response)=>{
           response.cookie('loggedIn', hashedCookie);
           response.cookie('userId', user_id);
           // response.send( result.rows[0] );
-          response.redirect('/home');
+          response.redirect('/income');
         }else{
           response.send("Your password is wrong! Try again!")
         }
@@ -189,6 +189,93 @@ app.get('/logout', (request, response) => {
 // ************************************************
 
 
-app.get('/home', (request, response) => {
-  response.render('home');
+app.get('/income', (request, response) => {
+  response.render('income');
 });
+
+
+
+// ************************************************
+// ADD NEW INCOME STREAM
+// ************************************************
+app.get('/add', (req, res) => {
+    res.render('add');
+});
+
+
+
+app.get('/add', (request, response) => {
+    // running this will let express to run home.handlebars file in your views folder
+        let user_id = request.cookies.userId;
+    let hashedCookie = sha256(SALT + user_id);
+
+    if (request.cookies.loggedIn === hashedCookie) {
+        response.render('add')
+    }else{
+        response.redirect('login')
+    }
+})
+
+
+
+
+app.post('/income', (req, res) => {
+  const queryText = "INSERT INTO income (user_id,type,amount,day) VALUES ($1, $2, $3, $4) RETURNING *";
+  const values = [
+    req.cookies.userId,
+    req.body.user_id,
+    req.body.type,
+    req.body.date
+  ];
+
+  pool.query(queryText, values, (err, result) => {
+    if (err) {
+        console.log('Error', err)
+    } else {
+        console.log(result.rows)
+/*    res.send('hello');*/
+      res.render('result', result.rows[0])
+    }
+  })
+})
+
+
+// ************************************************
+// DISPLAY TIME PERIOD SELECTION
+// ************************************************
+
+
+/////QQ how to select a range of dates//
+
+app.get("/timeperiod", (req, res) => {
+    const query = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
+
+    pool.query(query, (err, result) => {
+
+    const data = {
+        allincomeList: result.rows
+    }
+    console.log(result.rows)
+    res.render("timeperiod", data);
+    });
+})
+
+
+
+// ************************************************
+// DISPLAY ALL INCOME STREAMS
+// ************************************************
+
+
+app.get("/overview", (req, res) => {
+    const query = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
+
+    pool.query(query, (err, result) => {
+
+    const data = {
+        allincomeList: result.rows
+    }
+    console.log(result.rows)
+    res.render("overview", data);
+    });
+})
