@@ -41,7 +41,7 @@ class Add extends React.Component {
                             <label for="username">Date</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="description" placeholder="Enter date yyyy/mm/dd format"/>
+                                    <input type="date" class="form-control" name="date" placeholder="Enter date yyyy/mm/dd format"/>
                                 </div>
                         </div>
 
@@ -49,8 +49,11 @@ class Add extends React.Component {
 
                 <button type="submit">Add income</button>
 
-                    </form>
-                </div>
+            </form>
+
+            </div>
+            <a href="/overview">Income List</a>
+
             </div>
         </div>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

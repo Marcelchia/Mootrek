@@ -3,33 +3,46 @@ var React = require("react");
 
 class overview extends React.Component {
   render() {
-    return (
 
-
-        const allIncome = this.props.allIncomeList;
+    const allIncome = this.props.allIncomeList;
+    console.log(allIncome)
 
     const allIncomeList = allIncome.map( income => {
+
+        const event = new Date (income.date);
+
+        ////NEW OBJECT
+
+        const dateString = event.toDateString();
+
+
+    console.log (event);
+
+        //////change object to string////
+
+
         return (
                     <tr>
                         <td>{income.description}</td>
                         <td>${income.amount}</td>
-                        <td>{income.date}</td>
+                        <td>{dateString}</td>
 
-                        <a href ={`/edit/${expense.id}`}><button type="button" class="btn btn-primary btn-sm d-block p-2">Edit</button></a>
+
+                        <td>
+                        <a href ={`/edit/${income.id}`}><button type="button" class="btn btn-primary btn-sm d-block p-2">Edit</button></a>
                         &nbsp;
                         <form method="POST" action="/?_method=delete">
-                        <input type = "hidden" name = "expenseId" value = {expense.id}/>
+                        <input type = "hidden" name = "incomeId" value = {income.id}/>
                         <button type="submit" class="btn btn-primary btn-sm d-block p-2">Delete</button>
                         </form>
                         </td>
                     </tr>
-
-
-
-
-             <button type="button" class="btn btn-primary btn-sm d-block p-2" href="/timeperiod">View by Timeperiod</button>
+                    )
+                }
 
 )
+
+        return(
 
         <html>
         <head>
@@ -62,9 +75,10 @@ class overview extends React.Component {
                         <thead class="thead-light">
                             <tr>
 
-                                <th>description</th>
-                                <th>amount</th>
-                                <th>date</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
@@ -76,6 +90,8 @@ class overview extends React.Component {
 
             </div>
     </div>
+
+      <button type="button" class="btn btn-primary btn-sm d-block p-2" href="/timeperiod">View by Timeperiod</button>
 
 </body>
 

@@ -1,6 +1,6 @@
 html, body {
   color: $color-primary-dark;
-  background-image: url("background.svg");
+  background-image: url("/img/passive-income-online.jpeg");
   background-repeat: repeat;
   background-size: 200px;
   font-family: $font-family-body;

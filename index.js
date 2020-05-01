@@ -219,17 +219,18 @@ app.post('/add', (req, res) => {
   const queryText = "INSERT INTO income (user_id,description,amount,date) VALUES ($1, $2, $3, $4) RETURNING *";
 
     // var date = new Date();
-    // date.setDate(date.getDate() + lowerOffset);
     // var dateString = date.toLocaleDateString();
 
       let user_id = req.cookies.userId
       const values = [
         user_id,
-        req.body.user_id,
         req.body.description,
         req.body.amount,
-        // req.body.date QQ
+        req.body.date
       ];
+////
+      console.log(req.body);
+      console.log(values);
 
   pool.query(queryText, values, (err, result) => {
     if (err) {
@@ -278,7 +279,7 @@ app.get("/overview", (req, res) => {
     pool.query(query, (err, result) => {
 
     const data = {
-        allincomeList: result.rows
+        allIncomeList: result.rows
     }
     console.log(result.rows)
 
