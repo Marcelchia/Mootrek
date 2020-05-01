@@ -1,4 +1,5 @@
 var React = require("react");
+const Layout = require('./layout')
 
 
 
@@ -8,11 +9,8 @@ class Add extends React.Component {
       <html>
         <head>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
-            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
             <link rel="stylesheet" type="text/css" href="/style.css"/>
         </head>
         <body>
@@ -21,13 +19,13 @@ class Add extends React.Component {
             <div class="main">
                 <div class="main-center">
                 <h1>Add your income</h1>
-                    <form class="" method="POST" action="/addExpense">
+                    <form class="" method="POST" action="/add">
 
                         <div class="form-group">
                             <label for="name">Amount Earned</label>
                                 <div class="input-group" >
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="amount" placeholder="Enter amount spent"/>
+                                    <input type="text" class="form-control" name="amount" placeholder="Enter amount"/>
                             </div>
                         </div>
 
@@ -35,7 +33,7 @@ class Add extends React.Component {
                             <label for="username">Description</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="description" placeholder="Enter description of spending"/>
+                                    <input type="text" class="form-control" name="description" placeholder="Enter description"/>
                                 </div>
                         </div>
 
@@ -43,7 +41,7 @@ class Add extends React.Component {
                             <label for="username">Date</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="description" placeholder="Enter date"/>
+                                    <input type="text" class="form-control" name="description" placeholder="Enter date yyyy/mm/dd format"/>
                                 </div>
                         </div>
 
@@ -65,3 +63,36 @@ class Add extends React.Component {
 }
 
     module.exports = Add;
+
+
+//     const React = require('react');
+// const Layout = require('../layout');
+// const Nav = require('../nav');
+
+// class New extends React.Component {
+//   render(){
+//     return(
+//       <Layout>
+//         <Nav>
+//         </Nav>
+//         <body>
+//             <h1>What are you spending on today?</h1>
+//           <div className = "card text-white bg-dark mb-3">
+//             <form action={`/expense`} method="POST">
+
+//               <p>Date</p>
+//               <input type="date" name="date" required/><br/><br/>
+//               <p>Amount</p>
+//               <input type="text" name="amount" required/><br/><br/>
+//               <p>Message</p>
+//               <input type="text" name="message" required/><br/><br/>
+//               <input class="btn btn-secondary" type="submit" value="Submit"/><br/>
+//             </form>
+//           </div>
+//         </body>
+//       </Layout>
+//     )
+//   }
+// }
+
+// module.exports = New;

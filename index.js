@@ -204,27 +204,16 @@ app.get('/add', (req, res) => {
 
 
 
-app.get('/add', (request, response) => {
-    // running this will let express to run home.handlebars file in your views folder
-        let user_id = request.cookies.userId;
-    let hashedCookie = sha256(SALT + user_id);
-
-    if (request.cookies.loggedIn === hashedCookie) {
-        response.render('add')
-    }else{
-        response.redirect('login')
-    }
-})
 
 
 
-
-app.post('/income', (req, res) => {
-  const queryText = "INSERT INTO income (user_id,type,amount,day) VALUES ($1, $2, $3, $4) RETURNING *";
+app.post('/add', (req, res) => {
+  const queryText = "INSERT INTO income (user_id,description,amount,date) VALUES ($1, $2, $3, $4) RETURNING *";
   const values = [
     req.cookies.userId,
     req.body.user_id,
-    req.body.type,
+    req.body.description,
+    req.body.amount
     req.body.date
   ];
 
@@ -234,10 +223,10 @@ app.post('/income', (req, res) => {
     } else {
         console.log(result.rows)
 /*    res.send('hello');*/
-      res.render('result', result.rows[0])
-    }
-  })
-})
+      res.render('add', result.rows[0])
+    };
+  });
+});
 
 
 // ************************************************

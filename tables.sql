@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS income (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
-    type TEXT,
+    description TEXT,
     amount numeric(12, 2),
     day DATE
 );

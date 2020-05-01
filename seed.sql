@@ -19,7 +19,7 @@ INSERT INTO income (user_id,type, amount, day) VALUES
 
 -- SPECIFIC USER mar123
 
-INSERT INTO income (user_id,type, amount, day) VALUES
+INSERT INTO income (user_id,description, amount, day) VALUES
 ('17', 'maths tuition', 500, '2020-12-12'),
 ('17', 'coding project', 2000, '2020-12-12'),
 ('17', 'stocks investment', 500, '2020-12-12'),
