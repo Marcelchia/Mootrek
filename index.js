@@ -199,23 +199,37 @@ app.get('/income', (request, response) => {
 // ADD NEW INCOME STREAM
 // ************************************************
 app.get('/add', (req, res) => {
-    res.render('add');
+    let user_id = req.cookies.userId;
+    let hashedCookie = sha256(SALT + user_id);
+
+    if (req.cookies.loggedIn === hashedCookie) {
+        res.render('add')
+    }else{
+        res.redirect('login')
+    }
 });
 
 
 
 
 
+////QQQQ
 
 app.post('/add', (req, res) => {
   const queryText = "INSERT INTO income (user_id,description,amount,date) VALUES ($1, $2, $3, $4) RETURNING *";
-  const values = [
-    req.cookies.userId,
-    req.body.user_id,
-    req.body.description,
-    req.body.amount
-    req.body.date
-  ];
+
+    // var date = new Date();
+    // date.setDate(date.getDate() + lowerOffset);
+    // var dateString = date.toLocaleDateString();
+
+      let user_id = req.cookies.userId
+      const values = [
+        user_id,
+        req.body.user_id,
+        req.body.description,
+        req.body.amount,
+        // req.body.date QQ
+      ];
 
   pool.query(queryText, values, (err, result) => {
     if (err) {
@@ -236,18 +250,18 @@ app.post('/add', (req, res) => {
 
 /////QQ how to select a range of dates//
 
-app.get("/timeperiod", (req, res) => {
-    const query = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
+// app.get("/timeperiod", (req, res) => {
+//     const query = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
 
-    pool.query(query, (err, result) => {
+//     pool.query(query, (err, result) => {
 
-    const data = {
-        allincomeList: result.rows
-    }
-    console.log(result.rows)
-    res.render("timeperiod", data);
-    });
-})
+//     const data = {
+//         allincomeList: result.rows
+//     }
+//     console.log(result.rows)
+//     res.render('timeperiod', data);
+//     });
+// })
 
 
 
@@ -257,6 +271,8 @@ app.get("/timeperiod", (req, res) => {
 
 
 app.get("/overview", (req, res) => {
+     let user_id = req.cookies.userId;
+    let hashedCookie = sha256(SALT + user_id);
     const query = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
 
     pool.query(query, (err, result) => {
@@ -265,6 +281,41 @@ app.get("/overview", (req, res) => {
         allincomeList: result.rows
     }
     console.log(result.rows)
-    res.render("overview", data);
-    });
+
+        if (req.cookies.loggedIn === hashedCookie) {
+        res.render('overview',data)
+        }else{
+        res.redirect('login')
+    }
 })
+});
+
+// ************************************************
+// EDIT INCOME STREAMS
+// ************************************************
+
+
+// app.get('/edit', (request, response) => {
+//     // running this will let express to run home.handlebars file in your views folder
+//     // running this will let express to run home.handlebars file in your views folder
+//     let user_id = request.cookies.userId;
+//     let hashedCookie = sha256(SALT + user_id);
+
+//     if (request.cookies.loggedIn === hashedCookie) {
+//         const queryString = "SELECT * FROM income WHERE user_id='" + request.cookies.userId + "' ORDER BY expense.time_entered ASC"
+//         pool.query(queryString, (err, result) => {
+//             if (err) {
+//                 console.error('query error:', err);
+//                 response.send('query error');
+//             } else {
+//                 let data = {
+//                     allincomeList: result.rows,
+//                 }
+//                 console.log(data);
+//                 response.render('edit', data)
+//             }
+//         })
+//     } else {
+//         response.send("Please Log In")
+//     }
+// })

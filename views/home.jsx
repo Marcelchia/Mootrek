@@ -1,6 +1,6 @@
 
 var React = require("react");
-var Navbar = require('./navbar')
+var layout = require('./layout')
 
 
 class home extends React.Component {

@@ -22,7 +22,7 @@ class Income extends React.Component {
         <a className="nav-link" href="/add">Add income Stream</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="/timeperiod">Overview</a>
+        <a className="nav-link" href="/Overview">Overview</a>
       </li>
             <li className="nav-item">
         <a className="nav-link" href="/logout">Logout</a>
