@@ -292,31 +292,88 @@ app.get("/overview", (req, res) => {
 });
 
 // ************************************************
-// EDIT INCOME STREAMS
+// EDIT INCOME STREAMS (undone)
 // ************************************************
 
 
-// app.get('/edit', (request, response) => {
-//     // running this will let express to run home.handlebars file in your views folder
-//     // running this will let express to run home.handlebars file in your views folder
-//     let user_id = request.cookies.userId;
-//     let hashedCookie = sha256(SALT + user_id);
 
-//     if (request.cookies.loggedIn === hashedCookie) {
-//         const queryString = "SELECT * FROM income WHERE user_id='" + request.cookies.userId + "' ORDER BY expense.time_entered ASC"
-//         pool.query(queryString, (err, result) => {
-//             if (err) {
-//                 console.error('query error:', err);
-//                 response.send('query error');
-//             } else {
-//                 let data = {
-//                     allincomeList: result.rows,
-//                 }
-//                 console.log(data);
-//                 response.render('edit', data)
-//             }
-//         })
-//     } else {
-//         response.send("Please Log In")
-//     }
-// })
+app.get('/edit/:id', (request, response) => {
+
+    let user_id = request.cookies.userId;
+    let hashedCookie = sha256(SALT + user_id);
+    let id = request.params.id
+
+    if (request.cookies.loggedIn === hashedCookie) {
+
+
+    const queryString = `SELECT * FROM income WHERE user_id=${user_id} AND id=${id}`;
+
+         pool.query(queryString, (err, result) => {
+            if (err) {
+                console.error('query error:', err);
+                response.send('query error');
+            } else {
+                let data = {
+                    singleIncomeList: result.rows[0]
+                }
+                /////return an array//
+                console.log(data);
+                response.render('edit', data)
+            }
+        })
+    } else {
+        response.send("Please Log In")
+    }
+})
+
+
+
+app.put("/edit/:id", (request, response) => {
+    //read the file in and write out to it
+    const queryText = "UPDATE income SET description = $1, amount = $2 ,date =$3 WHERE id = $4 RETURNING *";
+
+    const values = [
+        request.body.description,
+        request.body.amount,
+        request.body.date,
+        request.params.id
+    ];
+
+    console.log(values)
+
+    pool.query(queryText, values, (err, result) => {
+        if (err) {
+            console.log("Error", err)
+        } else {
+            console.log("This is what i updated")
+            console.log(result.rows)
+            console.log("yes")
+            response.redirect('/overview')
+        }
+    })
+});
+
+
+
+
+
+// ************************************************
+// DELETE INCOME STREAMS
+// ************************************************
+
+
+
+app.delete("/", (request, response) => {
+    //read the file in and write out to it
+    let query = "DELETE FROM income WHERE id ='" + request.body.incomeId + "'";
+    pool.query(query, (err, result) => {
+        if (err) {
+            console.log("error", err);
+            response.status(500).send("error")
+
+        } else {
+            response.redirect("/overview")
+        }
+    })
+
+});

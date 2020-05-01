@@ -1,7 +1,4 @@
 var React = require("react");
-const Layout = require('./layout')
-
-
 
 class Add extends React.Component {
   render() {
