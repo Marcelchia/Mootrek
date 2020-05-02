@@ -29,11 +29,11 @@ class overview extends React.Component {
 
 
                         <td>
-                        <a href ={`/edit/${income.id}`}><button type="button" class="btn btn-primary btn-sm d-block p-2">Edit</button></a>
+                        <a href ={`/edit/${income.id}`}><button type="button" >Edit</button></a>
                         &nbsp;
                         <form method="POST" action="/?_method=delete">
                         <input type = "hidden" name = "incomeId" value = {income.id}/>
-                        <button type="submit" class="btn btn-primary btn-sm d-block p-2">Delete</button>
+                        <button type="submit" >Delete</button>
                         </form>
                         </td>
                     </tr>
@@ -64,12 +64,17 @@ class overview extends React.Component {
 
 
 
-    <div className="card mb-3" >
+
 
             <div className="card-body" >
 
 
                 <div >
+
+
+                 <h1> Income List Overview</h1>
+
+
 
                         <table class="table table-bordered table-hover table-light">
                         <thead class="thead-light">
@@ -88,10 +93,20 @@ class overview extends React.Component {
                     </table>
                     </div>
 
-            </div>
-    </div>
+            <a href="/add"><button>Add Income</button></a>
 
-      <button type="button" class="btn btn-primary btn-sm d-block p-2" href="/timeperiod">View by Timeperiod</button>
+            <a href="/income"><button>Back</button></a>
+            <a href="/login"><button>LogOut</button></a>
+
+
+
+
+
+
+            </div>
+
+
+
 
 </body>
 

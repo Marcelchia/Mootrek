@@ -58,7 +58,11 @@ class Edit extends React.Component {
 
 
             </div>
-            <a href="/overview">Income List</a>
+
+
+        <a href="/Overview"><button>Back</button></a>
+         <a href="/income"><button>Home</button></a>
+        <a href="/login"><button>Log Out</button></a>
 
             </div>
         </div>

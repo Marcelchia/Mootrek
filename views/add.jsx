@@ -44,18 +44,23 @@ class Add extends React.Component {
 
 
 
-                <button type="submit">Add income</button>
+                <button class ="add-button"type="submit">Add income</button>
 
             </form>
 
             </div>
-            <a href="/overview">Income List</a>
+
+
 
             </div>
+
+             <div class = "below-add-buttons">
+            <a href="/overview"><button>Income List</button></a>
+             <a href="/income"><button>Back</button></a>
+            <a href="/login"><button>Log Out</button></a>
+            </div>
         </div>
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         </body>
       </html>
     );
@@ -63,36 +68,3 @@ class Add extends React.Component {
 }
 
     module.exports = Add;
-
-
-//     const React = require('react');
-// const Layout = require('../layout');
-// const Nav = require('../nav');
-
-// class New extends React.Component {
-//   render(){
-//     return(
-//       <Layout>
-//         <Nav>
-//         </Nav>
-//         <body>
-//             <h1>What are you spending on today?</h1>
-//           <div className = "card text-white bg-dark mb-3">
-//             <form action={`/expense`} method="POST">
-
-//               <p>Date</p>
-//               <input type="date" name="date" required/><br/><br/>
-//               <p>Amount</p>
-//               <input type="text" name="amount" required/><br/><br/>
-//               <p>Message</p>
-//               <input type="text" name="message" required/><br/><br/>
-//               <input class="btn btn-secondary" type="submit" value="Submit"/><br/>
-//             </form>
-//           </div>
-//         </body>
-//       </Layout>
-//     )
-//   }
-// }
-
-// module.exports = New;

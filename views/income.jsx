@@ -14,20 +14,28 @@ class Income extends React.Component {
 
 <body>
 
-  <h1>Hello there, you are logged, welcome to MooTrek</h1>
+    <div className="card" >
+
+  <h1>Welcome to MooTrek</h1>
 
 
     <ul className="navbar-nav mr-auto">
-      <li className="nav-item">
-        <a className="nav-link" href="/add">Add income Stream</a>
+      <li className="income-item">
+               <a href="/add"><button>Add Income Stream</button></a>
+
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="/Overview">Overview</a>
+      <li className="income-item">
+
+         <a href="/Overview"><button>Overview</button></a>
+
       </li>
-            <li className="nav-item">
-        <a className="nav-link" href="/logout">Logout</a>
+            <li className="income-item">
+
+         <a href="/login"><button>Log Out</button></a>
       </li>
     </ul>
+
+    </div>
 
 
 </body>

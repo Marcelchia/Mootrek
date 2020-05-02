@@ -235,6 +235,7 @@ app.post('/add', (req, res) => {
   pool.query(queryText, values, (err, result) => {
     if (err) {
         console.log('Error', err)
+        res.send("Data invalid, please try again!")
     } else {
         console.log(result.rows)
 /*    res.send('hello');*/
@@ -344,6 +345,7 @@ app.put("/edit/:id", (request, response) => {
     pool.query(queryText, values, (err, result) => {
         if (err) {
             console.log("Error", err)
+            response.send("Invalid data, please try again!")
         } else {
             console.log("This is what i updated")
             console.log(result.rows)
