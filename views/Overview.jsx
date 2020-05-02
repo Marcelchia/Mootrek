@@ -3,9 +3,11 @@ var React = require("react");
 
 class overview extends React.Component {
   render() {
-
+    console.log("this is this.props")
+    console.log(this.props)
     const allIncome = this.props.allIncomeList;
     console.log(allIncome)
+
 
     const allIncomeList = allIncome.map( income => {
 
@@ -73,6 +75,9 @@ class overview extends React.Component {
 
 
                  <h1> Income List Overview</h1>
+
+
+                 <h3>Total:&nbsp;${this.props.total}</h3>
 
 
 

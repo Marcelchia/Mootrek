@@ -272,25 +272,72 @@ app.post('/add', (req, res) => {
 // ************************************************
 
 
+
+
 app.get("/overview", (req, res) => {
      let user_id = req.cookies.userId;
     let hashedCookie = sha256(SALT + user_id);
-    const query = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
 
-    pool.query(query, (err, result) => {
+    if (req.cookies.loggedIn === hashedCookie){
 
-    const data = {
-        allIncomeList: result.rows
-    }
-    console.log(result.rows)
 
-        if (req.cookies.loggedIn === hashedCookie) {
-        res.render('overview',data)
+    const query1 = "SELECT * FROM income WHERE user_id =" + req.cookies.userId;
+
+    const query2 = "SELECT SUM(amount) FROM income where user_id ="+ req.cookies.userId;
+
+    const data = {} ;
+    //empty object
+
+    pool.query(query1, (err, result) => {
+
+                    if(err){
+                        console.error('query error:',err);
+                        res.send('query error');
+
+                    } else{
+
+                    data.allIncomeList = result.rows
+
+                    console.log(result.rows)
+
+                    pool.query(query2, (err2, result2) => {
+
+                                    if(err2){
+                                        console.error('query error:',err2);
+                                        res.send('query error');
+
+                                    } else{
+
+                                        console.log("result2")
+                                        console.log(result2.rows[0])
+                               var total = (result2.rows.length <= 0) ? 0 : result2.rows[0].sum
+
+                                data.total=total
+
+                                    console.log(result2.rows)
+                                    console.log ("this is data")
+                                    console.log(data)
+                                    res.render('Overview',data)
+
+                                }
+                            })
+
+                }
+            });
+
+
         }else{
         res.redirect('login')
-    }
-})
+            }
 });
+
+
+
+
+
+
+
+
 
 // ************************************************
 // EDIT INCOME STREAMS (undone)
