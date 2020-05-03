@@ -15,11 +15,11 @@ class Add extends React.Component {
 
             <div class="main">
                 <div class="main-center">
-                <h1>Add your income</h1>
+                <h1>Add Moneyflow</h1>
                     <form class="" method="POST" action="/add">
 
                         <div class="form-group">
-                            <label for="name">Amount Earned</label>
+                            <label for="name">Amount</label>
                                 <div class="input-group" >
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                     <input type="text" class="form-control" name="amount" placeholder="Enter amount"/>
@@ -44,7 +44,7 @@ class Add extends React.Component {
 
 
 
-                <button class ="add-button"type="submit">Add income</button>
+                <button class ="add-button"type="submit">Add Moneyflow</button>
 
             </form>
 
@@ -55,7 +55,7 @@ class Add extends React.Component {
             </div>
 
              <div class = "below-add-buttons">
-            <a href="/overview"><button>Income List</button></a>
+            <a href="/overview"><button>Money List</button></a>
              <a href="/income"><button>Back</button></a>
             <a href="/login"><button>Log Out</button></a>
             </div>

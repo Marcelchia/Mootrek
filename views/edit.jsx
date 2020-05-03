@@ -18,7 +18,7 @@ class Edit extends React.Component {
 
             <div class="main">
                 <div class="main-center">
-                <h1>Edit your income</h1>
+                <h1>Edit your Moneyflow</h1>
 
                     <form method="POST" action={editURL}>
 
@@ -31,7 +31,7 @@ class Edit extends React.Component {
                         </div>
 
                         <div class="form-group">
-                            <label for="name">Amount Earned</label>
+                            <label for="name">Amount</label>
                                 <div class="input-group" >
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                     <input type="text" class="form-control" name="amount" placeholder="Enter amount"maxLength="25" defaultValue={`${this.props.singleIncomeList.amount}`}/>

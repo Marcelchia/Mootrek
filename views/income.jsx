@@ -21,7 +21,7 @@ class Income extends React.Component {
 
     <ul className="navbar-nav mr-auto">
       <li className="income-item">
-               <a href="/add"><button>Add Income Stream</button></a>
+               <a href="/add"><button>Add Moneyflow</button></a>
 
       </li>
       <li className="income-item">

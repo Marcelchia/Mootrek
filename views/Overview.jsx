@@ -26,7 +26,7 @@ class overview extends React.Component {
         return (
                     <tr>
                         <td>{income.description}</td>
-                        <td>${income.amount}</td>
+                        <td id="amountList"class="alert black">${income.amount}</td>
                         <td>{dateString}</td>
 
 
@@ -74,10 +74,10 @@ class overview extends React.Component {
                 <div >
 
 
-                 <h1> Income List Overview</h1>
+                 <h1> Money List Overview</h1>
 
 
-                 <h3>Total:&nbsp;${this.props.total}</h3>
+                 <h3 id="total"class="alert black">Total:&nbsp;${this.props.total}</h3>
 
 
 
@@ -98,7 +98,7 @@ class overview extends React.Component {
                     </table>
                     </div>
 
-            <a href="/add"><button>Add Income</button></a>
+            <a href="/add"><button>Add Moneyflow</button></a>
 
             <a href="/income"><button>Back</button></a>
             <a href="/login"><button>LogOut</button></a>
@@ -110,7 +110,7 @@ class overview extends React.Component {
 
             </div>
 
-
+  <script src="/script.js"></script>
 
 
 </body>

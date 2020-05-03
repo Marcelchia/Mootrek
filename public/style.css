@@ -10,11 +10,7 @@ html, body {
   @media #{$tablet-only} {
     font-size: 15px;
   }
-  @media #{$mobile-landscape-only} {
-    font-size: 14px;
-  }
-  @media #{$mobile-only} {
-    font-size: 13px;
+
   }
 }
 
@@ -46,27 +42,33 @@ border-radius:10%;
 
 
 
-img {
-  display: inline-block;
-  max-width: 300px;
-  max-height: 300px;
-}
-
-
 .table{
 	background-color:#fff7e6;
 }
-
-
-
-
-
-
-
 
 
 .income-item {
 
 	margin: 20px;
 	padding:10px;
+}
+
+
+.alert {
+font-color:red;
+}
+
+.black {
+
+	font-color:black;
+}
+
+
+#total {
+	font-color:black;
+}
+
+
+#amountList {
+	font-color:black;
 }
