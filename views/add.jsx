@@ -16,7 +16,7 @@ class Add extends React.Component {
             <div class="main">
                 <div class="main-center">
                 <h1>Add Moneyflow</h1>
-                    <form class="" method="POST" action="/add">
+                    <form class="" method="POST" action="/moneyflow/add">
 
                         <div class="form-group">
                             <label for="name">Amount</label>
@@ -55,9 +55,9 @@ class Add extends React.Component {
             </div>
 
              <div class = "below-add-buttons">
-            <a href="/overview"><button>Money List</button></a>
-             <a href="/income"><button>Back</button></a>
-            <a href="/login"><button>Log Out</button></a>
+            <a href="/moneyflow/overview"><button>Overview</button></a>
+             <a href="/moneyflow"><button>Back</button></a>
+            <a href="/"><button>Log Out</button></a>
             </div>
         </div>
 

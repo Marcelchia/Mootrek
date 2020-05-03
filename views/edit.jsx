@@ -3,7 +3,7 @@ var React = require("react");
 class Edit extends React.Component {
   render() {
 
-    var editURL = '/edit/'+this.props.singleIncomeList.id + '?_method=put'
+    var editURL = '/moneyflow/edit/'+this.props.singleIncomeList.id + '?_method=put'
 
     return (
       <html>
@@ -60,9 +60,9 @@ class Edit extends React.Component {
             </div>
 
 
-        <a href="/Overview"><button>Back</button></a>
-         <a href="/income"><button>Home</button></a>
-        <a href="/login"><button>Log Out</button></a>
+        <a href="/moneyflow/overview"><button>Back</button></a>
+         <a href="/moneyflow"><button>Home</button></a>
+        <a href="/"><button>Log Out</button></a>
 
             </div>
         </div>

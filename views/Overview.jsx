@@ -31,7 +31,7 @@ class overview extends React.Component {
 
 
                         <td>
-                        <a href ={`/edit/${income.id}`}><button type="button" >Edit</button></a>
+                        <a href ={`/moneyflow/edit/${income.id}`}><button type="button" >Edit</button></a>
                         &nbsp;
                         <form method="POST" action="/?_method=delete">
                         <input type = "hidden" name = "incomeId" value = {income.id}/>
@@ -98,10 +98,10 @@ class overview extends React.Component {
                     </table>
                     </div>
 
-            <a href="/add"><button>Add Moneyflow</button></a>
+            <a href="/moneyflow/add"><button>Add Moneyflow</button></a>
 
-            <a href="/income"><button>Back</button></a>
-            <a href="/login"><button>LogOut</button></a>
+            <a href="/moneyflow"><button>Back</button></a>
+            <a href="/"><button>LogOut</button></a>
 
 
 

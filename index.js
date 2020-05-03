@@ -163,7 +163,7 @@ app.post('/login',(request, response)=>{
           response.cookie('loggedIn', hashedCookie);
           response.cookie('userId', user_id);
           // response.send( result.rows[0] );
-          response.redirect('/income');
+          response.redirect('/moneyflow');
         }else{
           response.send("Your password is wrong! Try again!")
         }
@@ -189,8 +189,8 @@ app.get('/logout', (request, response) => {
 // ************************************************
 
 
-app.get('/income', (request, response) => {
-  response.render('income');
+app.get('/moneyflow', (request, response) => {
+  response.render('moneyflow');
 });
 
 
@@ -198,7 +198,7 @@ app.get('/income', (request, response) => {
 // ************************************************
 // ADD NEW INCOME STREAM
 // ************************************************
-app.get('/add', (req, res) => {
+app.get('/moneyflow/add', (req, res) => {
     let user_id = req.cookies.userId;
     let hashedCookie = sha256(SALT + user_id);
 
@@ -215,7 +215,7 @@ app.get('/add', (req, res) => {
 
 ////QQQQ
 
-app.post('/add', (req, res) => {
+app.post('/moneyflow/add', (req, res) => {
   const queryText = "INSERT INTO income (user_id,description,amount,date) VALUES ($1, $2, $3, $4) RETURNING *";
 
     // var date = new Date();
@@ -235,7 +235,7 @@ app.post('/add', (req, res) => {
   pool.query(queryText, values, (err, result) => {
     if (err) {
         console.log('Error', err)
-        res.send("Data invalid, please try again!")
+        res.send("Invalid data, please try again!")
     } else {
         console.log(result.rows)
 /*    res.send('hello');*/
@@ -274,7 +274,7 @@ app.post('/add', (req, res) => {
 
 
 
-app.get("/overview", (req, res) => {
+app.get("/moneyflow/overview", (req, res) => {
      let user_id = req.cookies.userId;
     let hashedCookie = sha256(SALT + user_id);
 
@@ -345,7 +345,7 @@ app.get("/overview", (req, res) => {
 
 
 
-app.get('/edit/:id', (request, response) => {
+app.get('/moneyflow/edit/:id', (request, response) => {
 
     let user_id = request.cookies.userId;
     let hashedCookie = sha256(SALT + user_id);
@@ -376,7 +376,7 @@ app.get('/edit/:id', (request, response) => {
 
 
 
-app.put("/edit/:id", (request, response) => {
+app.put("/moneyflow/edit/:id", (request, response) => {
     //read the file in and write out to it
     const queryText = "UPDATE income SET description = $1, amount = $2 ,date =$3 WHERE id = $4 RETURNING *";
 
@@ -397,7 +397,7 @@ app.put("/edit/:id", (request, response) => {
             console.log("This is what i updated")
             console.log(result.rows)
             console.log("yes")
-            response.redirect('/overview')
+            response.redirect('/moneyflow/overview')
         }
     })
 });
@@ -421,7 +421,7 @@ app.delete("/", (request, response) => {
             response.status(500).send("error")
 
         } else {
-            response.redirect("/overview")
+            response.redirect("/moneyflow/overview")
         }
     })
 

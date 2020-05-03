@@ -1,6 +1,6 @@
 var React = require("react");
 
-class Income extends React.Component {
+class Moneyflow extends React.Component {
   render() {
     return (
         <html>
@@ -21,17 +21,17 @@ class Income extends React.Component {
 
     <ul className="navbar-nav mr-auto">
       <li className="income-item">
-               <a href="/add"><button>Add Moneyflow</button></a>
+               <a href="/moneyflow/add"><button>Add Moneyflow</button></a>
 
       </li>
       <li className="income-item">
 
-         <a href="/Overview"><button>Overview</button></a>
+         <a href="/moneyflow/overview"><button>Overview</button></a>
 
       </li>
             <li className="income-item">
 
-         <a href="/login"><button>Log Out</button></a>
+         <a href="/"><button>Log Out</button></a>
       </li>
     </ul>
 
@@ -49,4 +49,4 @@ class Income extends React.Component {
 
 
 
-module.exports = Income;
+module.exports = Moneyflow;
