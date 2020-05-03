@@ -44,7 +44,7 @@ class Add extends React.Component {
 
 
 
-                <button class ="add-button"type="submit">Add Moneyflow</button>
+                <button class ="add-button"type="submit"value="confirm" onclick="confirmpopup()">Add Moneyflow</button>
 
             </form>
 
@@ -57,9 +57,11 @@ class Add extends React.Component {
              <div class = "below-add-buttons">
             <a href="/moneyflow/overview"><button>Overview</button></a>
              <a href="/moneyflow"><button>Back</button></a>
-            <a href="/"><button>Log Out</button></a>
+            <a href="/"><button value="confirm" onclick="confirmpopup()">Log Out</button></a>
             </div>
         </div>
+
+        <script src="/script.js"></script>
 
         </body>
       </html>
