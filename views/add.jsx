@@ -15,7 +15,7 @@ class Add extends React.Component {
 
             <div class="main">
                 <div class="main-center">
-                <h1>Add Moneyflow</h1>
+                <h1>Add Income Stream</h1>
                     <form class="" method="POST" action="/moneyflow/add">
 
                         <div class="form-group">
@@ -44,7 +44,7 @@ class Add extends React.Component {
 
 
 
-                <button class ="add-button"type="submit"value="confirm" onclick="confirmpopup()">Add Moneyflow</button>
+                <button class ="add-button"type="submit"value="confirm" onclick="confirmpopup()">Add</button>
 
             </form>
 

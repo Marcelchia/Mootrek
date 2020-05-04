@@ -74,7 +74,7 @@ class overview extends React.Component {
                 <div >
 
 
-                 <h1> Money List Overview</h1>
+                 <h1> Income List Overview</h1>
 
 
                  <h3 id="total"class="alert black">Total:&nbsp;${this.props.total}</h3>
@@ -98,7 +98,7 @@ class overview extends React.Component {
                     </table>
                     </div>
 
-            <a href="/moneyflow/add"><button>Add Moneyflow</button></a>
+            <a href="/moneyflow/add"><button>Add Income Stream</button></a>
 
             <a href="/moneyflow"><button>Back</button></a>
             <a href="/"><button>LogOut</button></a>
