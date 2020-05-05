@@ -121,7 +121,7 @@ app.post('/register', (request, response) => {
       let user_id = result.rows[0].id;
       let hashedCookie = sha256(SALT+user_id);
       response.cookie('name', request.body.name);
-      response.cookie('loggedOut', hashedCookie);
+      response.cookie('loggedIn', hashedCookie);
       response.cookie('userId', user_id);
       response.redirect('/login');
     }
