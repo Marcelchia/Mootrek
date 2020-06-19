@@ -1,5 +1,5 @@
 html, body {
-  background-color:#e69900;
+   background-image: url("/img/paper2.jpeg");
   font-family: $font-family-body;
   font-weight: 300;
   font-size: 18px;
